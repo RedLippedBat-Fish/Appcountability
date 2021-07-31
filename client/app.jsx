@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from "react";
-// import components from clinet/components
 
-// declare function instead of class "" extend whatever
+// TOP elements
+import ChallengeCreator from "./components/top/ChallengeCreator.jsx";
+import Nav from "./components/top/Nav.jsx";
 
-// @https://reactjs.org/docs/hooks-state.html ex;
+// BOTTOM elements
+import ChallengeContainer from "./components/bottom/challengeContainer.jsx";
+const App = () => {
+  // dummy
+  // const [user, setUser] = useState([{ user: "me" }]);
 
-// function Example() {
-//    const [count, setCount] = useState(0);
-// 'count' is state, setCount is a function to update 'count' variable
-
-// ## rules
-// -  we can use multiple State or Effect Hooks in a single component:
-//
-
-function App() {
-  const [test, setTest] = useState(0);
   // state methods
   // usestate = manipulate state (only overwrites)
-  // useEffet = componentdidMount or componentdidUpdate
+  // useEffet = componentdidMount or componentdidUpdatef
   // useEffect(() => {
   //    // Update the document title using the browser API
   //    document.title = `You clicked ${count} times`;
   //  });
 
   return (
-    <div>
-      <h1>heyeyeyey</h1>
-      <p>hi</p>
-      <p>hi2</p>
+    <div className="app">
+      <Nav />
+      <ChallengeCreator />
+      {/* <ChallengeContainer /> */}
     </div>
   );
-}
+};
 
 export default App;
