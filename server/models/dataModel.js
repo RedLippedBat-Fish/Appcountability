@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const MONGO_URI = 'mongodb+srv://dbUser:dbUser@dsvisualizer.hbjjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; // ------------------ Mongo URI place here
 
+//creating new branch in github
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
   useNewUrlParser: true,
