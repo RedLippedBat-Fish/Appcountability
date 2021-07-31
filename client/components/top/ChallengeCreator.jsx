@@ -2,18 +2,21 @@ import React from "react";
 
 const ChallengeCreator = () => {
   return (
-    <div className="formContainer">
-      <form className="newChallengeForm">
-        <button>New Challenge</button>
-        <input />
-      </form>
-      <form className="inviteUsersForm">
-        <button>Invite Users</button>
-        <input />
-      </form>
+    <div className="forms">
+      <div className="topForms">
+        <form className="newChallengeForm">
+          <input />
+          <button>New Challenge</button>
+        </form>
+        <form className="inviteUsersForm">
+          <input />
+          <button>Invite Users</button>
+        </form>
+      </div>
+
       <form className="wagerForm">
-        <button>Wager</button>
         <input />
+        <button>Wager</button>
       </form>
     </div>
   );

@@ -1,12 +1,12 @@
-import React from "react";
+// import React from "react";
 
-const testState = {
-    name : 'Yolan',
-    hobby: 'Kickboxing'
-}
+// const testState = {
+//     name : 'Yolan',
+//     hobby: 'Kickboxing'
+// }
 
-const Cards = Obj => (
+// const Cards = Obj => (
 
-); 
+// );
 
-export default Cards; 
+// export default Cards;
