@@ -26,7 +26,6 @@ const userSchema = new Schema({
 
 const User = mongoose.model('user', userSchema);
 
-
 // ------------------ Schema 2 & Model 2 placeholder
 
 const taskSchema = new Schema({
@@ -38,6 +37,7 @@ const taskSchema = new Schema({
 const Task = mongoose.model('task', taskSchema);
 
 // ------------------ Schema 3 & Model 3 placeholder
+
 const summarySchema = new Schema({
   endDate: Date,
   description: String,
