@@ -1,11 +1,13 @@
 import React from "react";
+import NavUserInfo from "./NavComponents/NavUserInfo.jsx";
 
 const Nav = () => {
   return (
-    <div>
-      <h1>Appcountability</h1>
-      <h3>where icon should be</h3>
-      <h3>User credentials</h3>
+    <div id="navbar">
+      <a href="#">Appcountability</a>
+      <a href="#">where icon should be</a>
+      <a rhef="#">User credentials</a>
+      <NavUserInfo />
     </div>
   );
 };
