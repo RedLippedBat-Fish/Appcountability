@@ -31,6 +31,7 @@ userController.resInvite = (req, res, next) => {
         });
       } else {
         console.log('successfully toggled boolean');
+        res.locals.invitationResponse = user;        
         return next();
       }
     });      
@@ -55,6 +56,7 @@ userController.getTasks = (req, res, next) => {
         })
       } else {
         console.log('successfully get the tasks of user');
+        res.locals.taskData = tasks;
         return next();
       }     
     })
