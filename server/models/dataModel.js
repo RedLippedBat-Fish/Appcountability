@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const MONGO_URI = 'placeholder'; // ------------------ Mongo URI place here
+const MONGO_URI = 'mongodb+srv://dbUser:dbUser@dsvisualizer.hbjjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; // ------------------ Mongo URI place here
 
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
