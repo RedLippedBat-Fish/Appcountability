@@ -31,6 +31,8 @@ userController.resInvite = (req, res, next) => {
         });
       } else {
         console.log('successfully toggled boolean');
+        res.locals.invitationResponse = user;        
+        return next();
       }
     });      
   } catch (err) {
@@ -39,6 +41,31 @@ userController.resInvite = (req, res, next) => {
     })
   }
 };
+
+userController.getTasks = (req, res, next) => {
+  const name = req.body.name;
+  const query = {
+    'name' : name,
+  }
+
+  try {
+    models.User.find(query, (err, tasks) => {
+      if (err) {
+        return next ({
+          log: 'error at user task find',
+        })
+      } else {
+        console.log('successfully get the tasks of user');
+        res.locals.taskData = tasks;
+        return next();
+      }     
+    })
+  } catch (err) {
+    return next ({
+      log: 'error at user getTasks middleware',
+    })
+  }
+}
 
 
 // ------------------ all the middleware
