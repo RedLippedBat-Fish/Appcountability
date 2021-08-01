@@ -38,31 +38,42 @@ app.use(
 
 // move to middleware later
 const isLoggedIn = (req, res, next) => {
-  if (req.user) {
+  console.log('user =' + userProfile);
+  // console.log('user email = ' + userProfile.displayEmail);
+  console.log('user display name = ' + userProfile.displayName);
+
+  if (userProfile) {
+    res.locals.user = userProfile.displayName;
     return next();
   } else {
-    // res.sendStatus(401);
-    return next();
+    console.log('error in isLoggedIn"')
+    res.sendStatus(200);
+    // return next();
   }
 };
 
 app.get("/", (req, res) => res.send("You are not logged in!"));
 app.get("/failed", (req, res) => res.send("your login failed"));
 app.get("/success", isLoggedIn, (req, res) =>
-  res.send(`welcome mr ${req.user.displayName}`)
+  res.send(`you are logged in ${res.locals.user}`)
 );
 
-app.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ['profile', 'email'] })
 );
 
-app.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/success",
-    failureRedirect: "/failed",
-  })
+// app.get(
+//   "/google/callback",
+//   passport.authenticate('google', {
+//     failureRedirect: '/failed',
+//     successRedirect: '/success',
+//   })
+// );
+app.get( "/auth/google/callback",
+  passport.authenticate('google', { failureRedirect: '/failed' }),
+  function (req, res) {
+    res.redirect('/success');
+  }
 );
 
 app.get("/logout", (req, res) => {
