@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const MONGO_URI = 'placeholder'; // ------------------ Mongo URI place here
+const MONGO_URI = 'mongodb+srv://dbUser:dbUser@dsvisualizer.hbjjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; // ------------------ Mongo URI place here
 
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
@@ -16,24 +16,41 @@ mongoose.connect(MONGO_URI, {
 
 // ------------------ Schema 1 & Model 1 placeholder
 
-const oneSchema = new Schema({
-
+const userSchema = new Schema({
+  name: String,
+  task: [{
+    type: Schema.Types.ObjectId,
+    ref: 'task'
+  }]
 });
 
-const One = mongoose.model('one', oneSchema);
-
+const User = mongoose.model('user', userSchema);
 
 // ------------------ Schema 2 & Model 2 placeholder
 
-const twoSchema = new Schema({
-
+const taskSchema = new Schema({
+  wagerAmount: Number,
+  taskName: String,
+  accepted: Boolean
 });
 
-const Two = mongoose.model('two', twoSchema);
+const Task = mongoose.model('task', taskSchema);
+
+// ------------------ Schema 3 & Model 3 placeholder
+
+const summarySchema = new Schema({
+  endDate: Date,
+  description: String,
+  createdBy: String,
+  totalWagerAmount: Number
+});
+
+const Summary = mongoose.model('summary', summarySchema);
 
 // ------------------ end of Schema
 
 module.exports = {
-  One,
-  Two,
+  User,
+  Task,
+  Summary,
 };

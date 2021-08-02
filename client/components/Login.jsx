@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import btnNormal from "./Assets/btnNormal.png";
 import btnPressed from "./Assets/btnPressed.png";
+import Nav from "./Login.jsx";
 
 const Login = () => {
   const [clicked, setClicked] = useState(true);
