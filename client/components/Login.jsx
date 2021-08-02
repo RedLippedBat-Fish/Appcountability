@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import btnNormal from "./Assets/btnNormal.png";
+import btnPressed from "./Assets/btnPressed.png";
 
 const Login = () => {
+  const [clicked, setClicked] = useState(true);
+
+  useEffect(() => {
+    if (clicked === false) {
+      const timer = setTimeout(() => {
+        setClicked(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [clicked]);
+
   return (
-    <div>
-      <h1>hi</h1>
-      {/* <img src="./Assets/btnNormal.png" /> */}
-      {/* <input type="image" src="./Assets/btnNormal.png" /> */}
+    <div className="loginPage">
+      <h1>Appcountability</h1>
+      <input
+        type="image"
+        onClick={() => setClicked(false)}
+        src={clicked ? btnNormal : btnPressed}
+      />
     </div>
   );
 };
-// button to sign into g
 
 export default Login;
