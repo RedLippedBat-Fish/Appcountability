@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import btnNormal from "./Assets/btnNormal.png";
 import btnPressed from "./Assets/btnPressed.png";
-import Nav from "./top/Nav.jsx";
+import NavLogin from "./top/NavLogin.jsx";
 
 const Login = () => {
   const [clicked, setClicked] = useState(true);
@@ -17,13 +17,15 @@ const Login = () => {
 
   return (
     <div className="loginPage">
-      <Nav />
-      <h1>Appcountability</h1>
-      <input
-        type="image"
-        onClick={() => setClicked(false)}
-        src={clicked ? btnNormal : btnPressed}
-      />
+      <NavLogin />
+      <div className="loginBox">
+        <h1>Appcountability</h1>
+        <input
+          type="image"
+          onClick={() => setClicked(false)}
+          src={clicked ? btnNormal : btnPressed}
+        />
+      </div>
     </div>
   );
 };

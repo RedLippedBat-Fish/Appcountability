@@ -10,11 +10,11 @@ import styles from "./scss/stylesheets.scss";
 // https://dev.to/danhjoo7/using-a-switch-component-in-react-router-d2k#:~:text=The%20component%20will,not%20be%20able%20to%20handle.
 
 ReactDOM.render(
-  //   <Router>
-  //     <Route path="/login" component={Login} />
-  //     <Route path="/App" compoenent={App} />
-  //   </Router>,
-  // <App />,
-  <Login />,
+  // <Router>
+  //   <Route path="/login" component={Login} />
+  //   <Route path="/App" component={App} />
+  // </Router>,
+  <App />,
+  // <Login />,
   document.getElementById("root")
 );
