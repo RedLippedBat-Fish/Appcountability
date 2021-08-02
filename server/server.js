@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api", apiRouter);
 app.use(express.static(path.resolve(__dirname, "../client")));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(cors()); // --> new for GOauth
 app.use(passport.initialize()); // --> new for GOauth
 app.use(passport.session()); // --> new for GOauth

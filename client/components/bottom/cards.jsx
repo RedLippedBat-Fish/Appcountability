@@ -1,12 +1,21 @@
 import React from "react";
 
 const testState = {
-    name : 'Yolan',
-    hobby: 'Kickboxing'
+    challenge : 'Daily Workout', 
+    wager : '$100', 
+    description: 'workout 5 days per week'
 }
 
-const Cards = Obj => (
+const Cards = Obj => {
+    return(
+        <div>
+            <ul> 
+                <li>{testState.challenge}</li>
+                <li>{testState.wager}</li>
+            </ul>
+        </div>
+    );
 
-); 
+}; 
 
 export default Cards; 

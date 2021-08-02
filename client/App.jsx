@@ -6,7 +6,7 @@ import ChallengeCreator from "./components/top/ChallengeCreator.jsx";
 import Nav from "./components/top/Nav.jsx";
 
 // BOTTOM elements
-import ChallengeContainer from "./components/bottom/challengeContainer.jsx";
+import CardContainer from "./components/bottom/cardContainer.jsx";
 const App = () => {
   // dummy
   const [user, setUser] = useState([{ user: "me" }]);
@@ -23,7 +23,7 @@ const App = () => {
     <div className="app">
       <Nav />
       <ChallengeCreator />
-      {/* <ChallengeContainer /> */}
+      <CardContainer />
     </div>
   );
 };
