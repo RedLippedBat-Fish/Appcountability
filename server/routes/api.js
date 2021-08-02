@@ -48,8 +48,23 @@ router.delete(
 
 //invitation handler
 //res.locals.invitationResponse should tell the frontend if the response bool was true or false
-router.put("/invitation", userController.resInvite, (req, res) => {
-  return res.status(200).json(res.locals.invitationResponse);
-});
+router.put('/invitation',
+    userController.resInvite,
+    (req, res) => {
+        return res.status(200).json(res.locals.invitationResponse);
+    }
+)
+
+// created getAllTasks controller
+router.get('/getAllTasks', 
+    taskController.getAllTasks,
+    (req, res) => {
+        return res.status(200).json(res.locals.taskData);
+    }
+)
+
+
+
+
 
 module.exports = router;

@@ -9,7 +9,7 @@ import axios from "axios";
 import regeneratorRuntime from "regenerator-runtime";
 
 // BOTTOM elements
-// import ChallengeContainer from "./components/bottom/challengeContainer.jsx";
+import ChallengeContainer from "./components/bottom/challengeContainer.jsx";
 // import { render } from "sass";
 
 class App extends Component {
@@ -17,8 +17,8 @@ class App extends Component {
     super(props);
     this.state = {
       taskName: "",
-      wagerAmount: 0,
-      accepted: false,
+      wagerAMount: 0,
+      allTasks : [],
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -61,6 +61,17 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  componentDidMount() {
+    console.log('mounted in parent app');
+    fetch('/api/getAllTasks/') // ---> need to create this route in api, task controller
+      .then(res => res.json())
+      .then(result => {
+        console.log('result fetched from getAllTasks =', result);
+        this.setState({ allTasks : result });
+      })
+      .catch(err => console.log('fetch getAllTasks error'));
+  }
+
   render() {
     return (
       <div className="app">
@@ -68,6 +79,10 @@ class App extends Component {
         <ChallengeCreator
           handleSubmit={this.handleSubmit}
           changeHandler={this.changeHandler}
+        />
+        <ChallengeContainer 
+          key={1}
+          allTasks={this.state.allTasks}
         />
       </div>
     );
