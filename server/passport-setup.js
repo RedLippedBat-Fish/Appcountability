@@ -33,23 +33,26 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function(obj, done) {
   // using the cookie received, find & put entire user req.user 
   // User.findById(id, function(err, user) {
-    done(null, user);
+    done(null, obj);
   // });
 });
 
 passport.use(new GoogleStrategy({
     clientID:     '311910910792-29j744fvip255poic0uf8km7e53ktrer.apps.googleusercontent.com',
     clientSecret: 'fv-ZrYkKTPn_YOg5JKJPF1oV',
-    callbackURL: 'http://localhost:3000/google/callback',
-    passReqToCallback   : true
+    callbackURL: 'http://localhost:3000/auth/google/callback',
+    // passReqToCallback   : true
   },
-  function(request, accessToken, refreshToken, profile, done) {
-    // use profile info ID to check if user is registered in ur db
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return done(null, profile);
-    // });
+  function(accessToken, refreshToken, profile, done) {
+    /*
+     use the profile info (mainly profile id) to check if the user is registerd in ur db
+     If yes select the user and pass him to the done callback
+     If not create the user and then select him and pass to callback
+    */
+   userProfile = profile;
+    return done(null, userProfile);
   }
 ));
