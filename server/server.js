@@ -24,6 +24,7 @@ app.use(cookieParser());
 app.use(cors()) // --> new for GOauth
 app.use(passport.initialize()); // --> new for GOauth
 app.use(passport.session()); // --> new for GOauth
+app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 
 // ------------------ all the routes to api 
 

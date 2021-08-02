@@ -58,5 +58,15 @@ router.put('/invitation',
     }
 )
 
+// created getAllTasks controller
+router.get('/getAllTasks', 
+    taskController.getAllTasks,
+    (req, res) => {
+        return res.status(200).json(res.locals.taskData);
+    }
+)
+
+
+
 
 module.exports = router;

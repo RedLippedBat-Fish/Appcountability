@@ -15,7 +15,7 @@ class ChallengeCreator extends Component {
             <input
               type="text"
               name="challengeName"
-              value={taskName}
+              // value={taskName}
               placeholder="Challenge Name"
               onChange={this.changeHandler}
             />
@@ -24,7 +24,7 @@ class ChallengeCreator extends Component {
             <input
               type="number"
               name="wager"
-              value={wagerAmount}
+              // value={wagerAmount}
               placeholder="Wager Amount"
               onChange={this.changeHandler}
             />
