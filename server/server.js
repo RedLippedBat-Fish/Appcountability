@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 
 // ------------------ Google OAuth
 
-app.use("/api", apiRouter);
+
 
 app.use(
   cookieSession({
@@ -69,6 +69,8 @@ app.get(
     res.redirect("/success");
   }
 );
+
+app.use("/api", apiRouter);
 
 app.get("/logout", (req, res) => {
   // destroy the session
