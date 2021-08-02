@@ -39,10 +39,21 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
-  target: 'node',
+  target: "node",
   externals: {
-    fsevents: "require('fsevents')"
-  }
+    fsevents: "require('fsevents')",
+  },
 };

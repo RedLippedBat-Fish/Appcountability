@@ -9,19 +9,23 @@ const passport = require("passport"); // --> new
 const cookieSession = require("cookie-session"); // --> new
 require("./passport-setup"); // --> new
 
-const userController = require('./controllers/userController');
-
+const userController = require("./controllers/userController");
 
 const PORT = 3000;
 
 // ------------------ api router
 const apiRouter = require("./routes/api");
-app.use("/api", apiRouter);
+
 
 // ------------------ boiler plate
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 app.use(express.static(path.resolve(__dirname, "../client")));
 app.use(cookieParser());
 app.use(cors()); // --> new for GOauth
@@ -33,6 +37,8 @@ app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 
 // ------------------ Google OAuth
 
+app.use("/api", apiRouter);
+
 app.use(
   cookieSession({
     name: "appAcct-session",
@@ -40,25 +46,27 @@ app.use(
   })
 );
 
-
-
 app.get("/", (req, res) => res.send("You are not logged in!"));
 app.get("/failed", (req, res) => res.send("your login failed"));
-app.get("/success", userController.isLoggedIn, (req, res) =>
-  res.send(`you are logged in ${res.locals.user}`)
+app.get(
+  "/success",
+  userController.isLoggedIn,
+  (req, res) => res.send(`you are logged in ${res.locals.user}`)
   // send back res.locals.user to the client
 );
 
 // moved over
-app.get("/api/auth/google",
-  passport.authenticate("google", { scope: ['profile', 'email'] })
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 // moved over
-app.get( "/api/auth/google/callback",
-  passport.authenticate('google', { failureRedirect: '/failed' }),
+app.get(
+  "/api/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/failed" }),
   function (req, res) {
-    res.redirect('/success');
+    res.redirect("/success");
   }
 );
 
