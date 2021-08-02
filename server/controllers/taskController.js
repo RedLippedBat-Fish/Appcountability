@@ -60,15 +60,38 @@ taskController.createSummary = async (req, res, next) => {
 };
 
 taskController.deleteSummary = async (req, res, next) => {
-  try {
-    console.log("We have entered the delete Summary controller");
-    await models.Summary.deleteOne(req.body);
-    return next();
-  } catch (error) {
-    console.log("There was an error deleting the Summary");
-    return next(error);
-  }
-};
+    try {
+        console.log('We have entered the delete Summary controller');
+        await models.Summary.deleteOne(req.body)
+        return next()
+    } catch (error) {
+        console.log('There was an error deleting the Summary')
+        return next(error)
+    }
+}
+
+// created new getAllTasks controller
+// gotta pass the getAllTasks
+taskController.getAllTasks = async (req, res, next) => {
+    try {
+        console.log('Entered into getAllTasks mw');
+        models.User.findOne({name : 'Nate Tracy'}, 'task', (err, allTasks) => {
+            if (err) {
+                return next({
+                    log: 'error in findOne in mongoose'
+                })
+            } 
+            res.locals.taskData = allTasks;
+            return next();
+        })
+        
+    } catch (error) {
+        console.log('Error in getAllTasks mw');
+        return next(error)
+    }
+}
+
+
 // ------------------ end of middleware
 
 module.exports = taskController;

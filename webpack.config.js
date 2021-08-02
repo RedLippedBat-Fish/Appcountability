@@ -12,7 +12,8 @@ module.exports = {
     compress: true,
     port: 8080,
     proxy: {
-      "/api/**": { target: "http://localhost:3000/" },
+      // "/api/**": { target: "http://localhost:3000/" },
+      "/api/**": { target: "http://[::1]:3000/" }
     },
   },
   module: {
@@ -52,8 +53,8 @@ module.exports = {
       },
     ],
   },
-  target: "node",
+  target: 'node',
   externals: {
-    fsevents: "require('fsevents')",
-  },
+    fsevents: "require('fsevents')"
+  }
 };
