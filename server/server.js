@@ -58,7 +58,7 @@ app.get("/success", isLoggedIn, (req, res) =>
   res.send(`you are logged in ${res.locals.user}`)
 );
 
-app.get("/auth/google",
+app.get("/api/auth/google",
   passport.authenticate("google", { scope: ['profile', 'email'] })
 );
 
@@ -69,7 +69,7 @@ app.get("/auth/google",
 //     successRedirect: '/success',
 //   })
 // );
-app.get( "/auth/google/callback",
+app.get( "/api/auth/google/callback",
   passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
     res.redirect('/success');
