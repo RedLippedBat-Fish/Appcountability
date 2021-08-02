@@ -40,10 +40,10 @@ app.use(
 const isLoggedIn = (req, res, next) => {
   console.log('user =' + userProfile);
   // console.log('user email = ' + userProfile.displayEmail);
-  console.log('user display name = ' + userProfile.displayName);
+  console.log('user display name = ' + userProfile.name);
 
   if (userProfile) {
-    res.locals.user = userProfile.displayName;
+    res.locals.user = userProfile.name;
     return next();
   } else {
     console.log('error in isLoggedIn"')
@@ -56,6 +56,7 @@ app.get("/", (req, res) => res.send("You are not logged in!"));
 app.get("/failed", (req, res) => res.send("your login failed"));
 app.get("/success", isLoggedIn, (req, res) =>
   res.send(`you are logged in ${res.locals.user}`)
+  // send back res.locals.user to the client
 );
 
 app.get("/api/auth/google",
