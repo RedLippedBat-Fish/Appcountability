@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 
 
 
-app.use("/api", apiRouter);
+
 
 app.use(
   cookieSession({
@@ -72,7 +72,13 @@ app.get(
   }
 );
 
+<<<<<<< HEAD
+app.use("/api", apiRouter);
+
+app.get("/logout", (req, res) => {
+=======
 app.get('/logout', (req, res) => {
+>>>>>>> dev
   // destroy the session
   req.session = null;
   // log them out from passport
