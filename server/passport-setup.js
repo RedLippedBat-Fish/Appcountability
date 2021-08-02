@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require( 'passport-google-oauth20' ).Strategy;
+const models = require('./models/dataModel.js');
 
 /* correct way once DB User is setup
 passport.serializeUser(function(user, done) {
@@ -34,6 +35,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(obj, done) {
+    console.log('got into deserializeUser', obj);
   // using the cookie received, find & put entire user req.user 
   // User.findById(id, function(err, user) {
     done(null, obj);
@@ -52,7 +54,33 @@ passport.use(new GoogleStrategy({
      If yes select the user and pass him to the done callback
      If not create the user and then select him and pass to callback
     */
-   userProfile = profile;
-    return done(null, userProfile);
+    console.log('pre user.findOrCreate');
+    models.User.findOne({name: profile.displayName}, (err, data) => {
+      if (err) return next(err);
+      console.log('first data =', data);
+      if (data) {
+        userProfile = data
+        return done(null, userProfile);
+      } else {
+        // create
+        models.User.create({name: profile.displayName}, (err, data) => {
+          if (err) return next(err);
+          console.log('second data =', data);
+          userProfile = data;
+          return done(null, userProfile);
+        })
+      }
+    })
+    // models.User.findOrCreate({name: profile.displayName}, (err, data) => {
+    //   console.log('made it into findOrCreate');
+    //   if (err) return next(err);
+    //   userProfile = data;
+    //   console.log('there was no error in findOrCreate');
+    //   return done(null, userProfile);
+    // })
+
+    
+    // userProfile = profile;
+    // return done(null, userProfile);
   }
 ));
