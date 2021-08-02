@@ -4,8 +4,9 @@ const ChallengeCreator = () => {
   return (
     <div className="forms">
       <div className="topForms">
-        <form className="newChallengeForm">
-          <input />
+        <form className="challengeForm">
+          <input placeholder="Challenge" />
+          <input id="wagerForm" placeholder="Wager" />
           <button>New Challenge</button>
         </form>
         <form className="inviteUsersForm">
@@ -13,11 +14,6 @@ const ChallengeCreator = () => {
           <button>Invite Users</button>
         </form>
       </div>
-
-      <form className="wagerForm">
-        <input />
-        <button>Wager</button>
-      </form>
     </div>
   );
 };
