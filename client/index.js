@@ -14,7 +14,7 @@ ReactDOM.render(
   //     <Route path="/login" component={Login} />
   //     <Route path="/App" compoenent={App} />
   //   </Router>,
-  <App />,
-  //   <Login />,
+  // <App />,
+  <Login />,
   document.getElementById("root")
 );
