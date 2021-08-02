@@ -41,4 +41,8 @@ module.exports = {
       },
     ],
   },
+  target: 'node',
+  externals: {
+    fsevents: "require('fsevents')"
+  }
 };
