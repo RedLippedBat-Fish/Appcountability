@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { render } from "sass";
 import NavUserInfo from "./NavComponents/NavUserInfo.jsx";
 
-class Nav extends component {
+class Nav extends Component {
   constructor(props) {
     super(props);
   }
