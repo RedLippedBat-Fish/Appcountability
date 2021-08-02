@@ -16,6 +16,17 @@ taskController.createTask = async (req, res, next) => {
 
     await models.Task.create(req.body);
     return next();
+
+
+    // models.User.findOneAndUpdate({name : 'Nate Tracy'}, {$push: {task : req.body}}, (err, data) => {
+    //   if (err) {
+    //     console.log('error at findOneUpdate');
+    //   } else {
+    //     return next();
+    //   }
+    // })
+
+
   } catch (error) {
     console.log("There was an error deleting the user");
     return next(error);
@@ -75,12 +86,18 @@ taskController.deleteSummary = async (req, res, next) => {
 taskController.getAllTasks = async (req, res, next) => {
     try {
         console.log('Entered into getAllTasks mw');
-        models.User.findOne({name : 'Nate Tracy'}, 'task', (err, allTasks) => {
+        let search = {
+          name : 'Nate Tracy'
+        }
+        models.Task.find({}, (err, allTasks) => {
             if (err) {
                 return next({
                     log: 'error in findOne in mongoose'
                 })
             } 
+            console.log('within getAllTasks =', allTasks);
+            console.log('get first getAllTasks =', allTasks[0]);
+            
             res.locals.taskData = allTasks;
             return next();
         })
@@ -89,6 +106,27 @@ taskController.getAllTasks = async (req, res, next) => {
         console.log('Error in getAllTasks mw');
         return next(error)
     }
+
+  //   try {
+  //     console.log('Entered into getAllTasks mw');
+  //     let search = {
+  //       name : 'Nate Tracy'
+  //     }
+  //     models.User.findOne(search, (err, allTasks) => {
+  //         if (err) {
+  //             return next({
+  //                 log: 'error in findOne in mongoose'
+  //             })
+  //         } 
+  //         console.log('within getAllTasks =', allTasks.task[0]);
+  //         res.locals.taskData = allTasks;
+  //         return next();
+  //     })
+      
+  // } catch (error) {
+  //     console.log('Error in getAllTasks mw');
+  //     return next(error)
+  // }
 }
 
 

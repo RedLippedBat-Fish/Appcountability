@@ -10,7 +10,6 @@ class Nav extends Component {
     return (
       <div id="navbar">
         <div id="navLeft">
-          <a href="#">where icon should be</a>
           <a href="#">Appcountability</a>
         </div>
         <div id="navRight">

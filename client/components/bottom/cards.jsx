@@ -15,8 +15,8 @@ class Cards extends Component {
     return (
       <div className = "itemCard">
         <p>TaskName : {this.props.taskName}</p>
-        <p>Wager Amount : {this.props.wagerAmount}</p>
-        <p>Accepted : {this.props.accepted}</p>
+        <p>Wager Amount : ${this.props.wagerAmount}</p>
+        <p>Accepted : Not accepted</p>
       </div>
     )
   }

@@ -34,14 +34,13 @@ class ChallengeContainer extends Component {
           key={i}
           wagerAmount={availTasks[i].wagerAmount}
           taskName={availTasks[i].taskName}
-          accepted={availTasks[i].accepted}
+          // accepted={availTasks[i].accepted}
         />
       )
     }
 
     return (
-      <div>
-        <p>Hello test!</p>
+      <div className='taskContainer'>
         {tasksToAdd}
       </div>
     );

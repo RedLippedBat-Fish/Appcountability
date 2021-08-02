@@ -21,11 +21,22 @@ const userSchema = new Schema({
   name: String,
   task: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "task",
+      taskName: String,
+      wagerAmount: Number,
+       accepted: Boolean,
     },
   ],
 });
+
+// const userSchema = new Schema({
+//   name: String,
+//   task: [
+//     {
+//       type: Schema.Types.ObjectId,
+//       ref: "task",
+//     },
+//   ],
+// });
 
 const User = mongoose.model("user", userSchema);
 
