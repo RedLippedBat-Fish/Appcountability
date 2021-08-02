@@ -3,7 +3,7 @@ import React from "react";
 const NavUserInfo = () => {
   return (
     <div className="NavUser">
-      <h1 className="firstName">Redlip</h1>
+      <h1 className="firstName">Redlipped</h1>
       <h1 className="lastName">fish</h1>
 
       <img

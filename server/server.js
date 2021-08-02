@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
-const cors = require('cors'); // --> new
-const passport = require('passport'); // --> new
-const cookieSession = require('cookie-session'); // --> new
-require('./passport-setup'); // --> new
+
+const cors = require("cors"); // --> new
+const passport = require("passport"); // --> new
+const cookieSession = require("cookie-session"); // --> new
+require("./passport-setup"); // --> new
+
+const userController = require("./controllers/userController");
 
 const PORT = 3000;
 
@@ -16,10 +19,16 @@ const apiRouter = require('./routes/api');
 
 // ------------------ boiler plate
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.json());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', apiRouter);
 app.use(express.static(path.resolve(__dirname, '../client')));
+app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(cors()) // --> new for GOauth
 app.use(passport.initialize()); // --> new for GOauth
@@ -29,37 +38,39 @@ app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 // ------------------ all the routes to api 
 
 
-// ------------------ Google OAuth
 
-app.use(cookieSession({
-  name: 'appAcct-session',
-  keys: ['key1', 'key2']
-}))
+app.use("/api", apiRouter);
 
-// move to middleware later
-const isLoggedIn = (req, res, next) => {
-  if (req.user) {
-    return next ()
-  } else {
-    // res.sendStatus(401);
-    return next ();  
+app.use(
+  cookieSession({
+    name: "appAcct-session",
+    keys: ["key1", "key2"],
+  })
+);
+
+app.get("/", (req, res) => res.send("You are not logged in!"));
+app.get("/failed", (req, res) => res.send("your login failed"));
+app.get(
+  "/success",
+  userController.isLoggedIn,
+  (req, res) => res.send(`you are logged in ${res.locals.user}`)
+  // send back res.locals.user to the client
+);
+
+// moved over
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// moved over
+app.get(
+  "/api/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/failed" }),
+  function (req, res) {
+    res.redirect("/success");
   }
-}
-
-app.get('/', (req, res) => res.send('You are not logged in!'));
-app.get('/failed', (req, res) => res.send('your login failed'));
-app.get('/success', isLoggedIn, (req, res) => res.send(`welcome mr ${req.user.displayName}`));
-
-
-app.get('/google',
-  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
-));
-
-app.get( '/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/success',
-        failureRedirect: '/failed'
-}));
+);
 
 app.get('/logout', (req, res) => {
   // destroy the session
