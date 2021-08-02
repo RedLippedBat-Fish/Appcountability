@@ -31,7 +31,8 @@ const User = mongoose.model('user', userSchema);
 const taskSchema = new Schema({
   wagerAmount: Number,
   taskName: String,
-  accepted: Boolean
+  //commenting out boolean for now to submit single task schema
+  // accepted: Boolean
 });
 
 const Task = mongoose.model('task', taskSchema);
