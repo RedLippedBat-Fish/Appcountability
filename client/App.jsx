@@ -42,18 +42,6 @@ class App extends Component {
     });
 
     try {
-      // fetch('/api/newTask', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'Application/JSON'
-      //   },
-      //   body: JSON.stringify(params)
-      // })
-      // console.log("attempting to post new challenge with axios");
-      // await axios.post("http://localhost:8080/api/newTask", params, {
-      //   headers: { "content-type": "application/json" },
-      // });
-
       await axios({
         method: "post",
         url: "http://localhost:3000/api/newTask",

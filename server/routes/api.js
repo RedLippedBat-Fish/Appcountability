@@ -24,7 +24,6 @@ router.post(
   taskController.createTask,
   // taskController.createSummary,
   (req, res) => {
-    console.log(req.body, "req.body from api.js");
     return res.status(200).json(res.locals.taskData);
   }
 );

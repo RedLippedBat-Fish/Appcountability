@@ -1,4 +1,5 @@
 const models = require("../models/dataModel");
+const express = require("express")
 const cors = require("cors");
 const app = express();
 app.use(cors());
@@ -8,7 +9,7 @@ const taskController = {};
 taskController.createTask = async (req, res, next) => {
   try {
     console.log("We have entered the create task controller");
-    console.log(req);
+    console.log(req.body);
 
     // console.log(req.params, "This is meant to be the req body");
     // // console.log(JSON.stringify(req.body));
