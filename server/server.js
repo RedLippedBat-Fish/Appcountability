@@ -26,7 +26,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', apiRouter);
 app.use(express.static(path.resolve(__dirname, '../client')));
 app.use(bodyParser.json())
 app.use(cookieParser());
@@ -39,6 +38,7 @@ app.use(express.static(path.join(__dirname, '../client/components/Assets')));
 
 
 
+app.use('/api', apiRouter);
 
 
 app.use(
@@ -72,13 +72,7 @@ app.get(
   }
 );
 
-<<<<<<< HEAD
-app.use("/api", apiRouter);
-
 app.get("/logout", (req, res) => {
-=======
-app.get('/logout', (req, res) => {
->>>>>>> dev
   // destroy the session
   req.session = null;
   // log them out from passport

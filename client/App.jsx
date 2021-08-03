@@ -29,7 +29,7 @@ class App extends Component {
   handleSubmit = async (event) => {
     // alert('A name was submitted: ' + this.state.value);
     //change this to have it go to the right schema
-    event.preventDefault();
+    // event.preventDefault();
     // console.log(this.state);
     console.log(this.state.taskName);
     console.log(this.state.wagerAmount);
@@ -80,6 +80,8 @@ class App extends Component {
           handleSubmit={this.handleSubmit}
           changeHandler={this.changeHandler}
         />
+        <br id="middle"/>
+        <h1 id="challengeTitle">Challenges</h1>
         <ChallengeContainer 
           key={1}
           allTasks={this.state.allTasks}
