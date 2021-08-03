@@ -67,6 +67,22 @@ userController.getTasks = (req, res, next) => {
   }
 }
 
+userController.isLoggedIn = (req, res, next) => {
+  console.log('user =' + userProfile);
+  // console.log('user email = ' + userProfile.displayEmail);
+  console.log('user display name = ' + userProfile.name);
+
+  if (userProfile) {
+    res.locals.user = userProfile.name;
+    return next();
+  } else {
+    console.log('error in isLoggedIn"')
+    res.sendStatus(200);
+    // return next();
+  }
+};
+
+
 
 // ------------------ all the middleware
 

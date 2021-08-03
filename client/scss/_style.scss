@@ -49,12 +49,13 @@ body {
   position: relative;
   float: right;
 }
-#topForms {
+#submitBtns {
   display: flex-inline;
   vertical-align: middle;
+  margin: 15px 15px 15px 15px;
 }
 
-.forms input {
+#submitBtns input {
   border: none;
   border-right: solid 1px gray;
   border-bottom: solid 1px gray;
@@ -65,16 +66,16 @@ body {
   box-sizing: border-box;
 }
 
-.forms button {
+#submitBtns button {
   border: none;
   border-right: solid 1px gray;
   border-bottom: solid 1px gray;
   box-shadow: 0px 1px 1px #7e7e7e;
-  background-color: white;
-  color: gray;
+  background-color: #800020;
+  color: white;
   padding: 7px;
   width: 120px;
-
+  border-radius: 16px;
   text-align: center;
 }
 
@@ -95,4 +96,50 @@ body {
   color: gray;
   text-align: center;
   vertical-align: middle;
+}
+
+// .loginBox {
+//   border: solid 1px black;
+// }
+
+.loginBox {
+  margin: 90px 0 10px 0;
+  padding: 40px 0 40px 0;
+  background: lightgray;
+  // border: solid 1px black;
+}
+
+.loginBox h1 {
+  // border-bottom: solid 1px black;
+}
+
+.itemCard {
+  border: none;
+  border-right: solid 1px gray;
+  border-bottom: solid 1px gray;
+  box-shadow: 0px 1px 1px #7e7e7e;
+  
+  padding: 10px;
+  width: 300px;
+  margin: 15px;
+  color: black;
+}
+
+
+@media screen and (min-width: 180px) {
+  .taskContainer {
+    display: grid;
+    /* grid-template: auto/ repeat(5, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+#challengeTitle{
+  font-size: 20px;
+  color: gray;
+}
+
+#middle{
+  border: solid 1px gray;
+  
 }

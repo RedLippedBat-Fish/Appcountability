@@ -1,15 +1,50 @@
-// import React from "react";
-// import Cards from './cards.jsx';
+import React, { Component } from "react";
+import Cards from "./cards.jsx";
 
-// const ChallengeContainer = () => {
-//     return (
-//         <div>
-//         <h1> THIS IS WHERE CARDS GO</h1>
-// {/* //         <ItemForm id = "itemForm"/>
-// //         {this.state.items.map((items, i) => ( */}
-// {/* //         <ItemCard className= 'itemCard' key={i} id={i} details={this.state.items[i]} /> */}
-//         </div>
-//     );
-// }
+class ChallengeContainer extends Component {
+  constructor (props) {
+    super(props);
+    // this.state = {
+    //   allTasks : [],
+    // }
+  }
+  
+//   componentDidMount() {
+//     console.log('got into componentdidMount');
+//     // fetch('/api/getAllTasks') // ---> need to create this route in api, task controller
+//     //   .then(res => res.json())
+//     //   .then(result => {
+//     //     console.log('result fetched from getAllTasks =', result);
+//     //     this.setState({ allTasks : result });
+//     //   })
+//     //   .catch(err => console.log('fetch getAllTasks error'));
+//   }
 
-// export default ChallengeContainer;
+
+  render () {
+    
+    const availTasks = this.props.allTasks;
+    console.log(this.props.allTasks);
+    // const availTasks = [{taskName : 'kickboxing', wagerAmount: 100, accepted: false}, {taskName : 'eat bread', wagerAmount: 100, accepted: false}];
+
+    const tasksToAdd = [];
+    for (let i = 0; i < availTasks.length; i++) {
+      tasksToAdd.push(
+        <Cards
+          key={i}
+          wagerAmount={availTasks[i].wagerAmount}
+          taskName={availTasks[i].taskName}
+          // accepted={availTasks[i].accepted}
+        />
+      )
+    }
+
+    return (
+      <div className='taskContainer'>
+        {tasksToAdd}
+      </div>
+    );
+  }
+}
+
+export default ChallengeContainer;

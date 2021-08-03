@@ -1,21 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
+// import axios from "axios";
+// import regeneratorRuntime from "regenerator-runtime";
 
-const ChallengeCreator = () => {
-  return (
-    <div className="forms">
-      <div className="topForms">
-        <form className="challengeForm">
-          <input placeholder="Challenge" />
-          <input id="wagerForm" placeholder="Wager" />
-          <button>New Challenge</button>
-        </form>
-        <form className="inviteUsersForm">
-          <input />
-          <button>Invite Users</button>
+class ChallengeCreator extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div id="submitBtns">
+
+        <form onSubmit={this.props.handleSubmit}>
+          {/* <div> */}
+          <input
+            type="text"
+            name="taskName"
+            value={this.props.taskName}
+            placeholder="Task Name"
+            onChange={this.props.changeHandler}
+          />
+          {/* </div>
+          <div> */}
+          <input
+            type="number"
+            name="wagerAmount"
+            value={this.props.wagerAmount}
+            placeholder="Wager Amount"
+            onChange={this.props.changeHandler}
+          />
+          {/* </div> */}
+          <button type="submit">Submit</button>
         </form>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default ChallengeCreator;
+
